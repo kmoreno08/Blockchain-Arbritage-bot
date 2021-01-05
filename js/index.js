@@ -30,29 +30,65 @@ const KYBER_RATE_ABI = [{"constant":false,"inputs":[{"name":"alerter","type":"ad
 const KYBER_RATE_ADDRESS = '0x96b610046d63638d970e6243151311d8827d69a5'
 const kyberRateContract = new web3.eth.Contract(KYBER_RATE_ABI, KYBER_RATE_ADDRESS)
 
-const ETH_ADDRESS = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
+// async function checkPair(args) {
+//   const { inputTokenSymbol, inputTokenAddress, outputTokenSymbol, outputTokenAddress, inputAmount } = args
 
-async function checkUniswapToKyber(args) {
-  const { tokenSymbol, tokenAddress, inputAmount } = args
+/////////////////////////////////////////// 
+const ETH_ADDRESS = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee' // Added
 
+const button = document.getElementById('button');
+button.addEventListener('click', checkUniswapToKyber, false)
+console.log('Have entered here')
+
+async function checkUniswapToKyber(args) {  // Changed from above
+  const { tokenSymbol, tokenAddress, inputAmount } = args // Changed from above
+
+  console.log('Have entered check uni swap function');
+  // const exchangeAddress = await uniswapFactoryContract.methods.getExchange(outputTokenAddress).call() // outputTokenAddress
   const exchangeAddress = await uniswapFactoryContract.methods.getExchange(tokenAddress).call()
+  console.log('****');
+  console.log('exchangeAddress', exchangeAddress)
   const exchangeContract = new web3.eth.Contract(UNISWAP_EXCHANGE_ABI, exchangeAddress)
+  // console.log('exchangeContract', exchangeContract);  
 
-  const uniswapResult = await exchangeContract.methods.getTokenToEthInputPrice(inputAmount).call()
-  const uniswapRate = web3.utils.fromWei(uniswapResult, 'Ether')
-  const ethAmount = Math.round(inputAmount * uniswapRate).toString() // Eth returned from Uniswap
+  // const uniswapResult = await exchangeContract.methods.getEthToTokenInputPrice(inputAmount).call() <--- Used in original - getEthToToken
+  const uniswapResult = await exchangeContract.methods.getTokenToEthInputPrice(inputAmount).call() 
+  console.log('uniswapResult', uniswapResult);
+  const uniswapRate = web3.utils.fromWei(uniswapResult, 'Ether'); // Added
+  console.log("uniswapeRate", uniswapRate);
+  const ethAmount = Math.round(inputAmount * uniswapRate).toString(); // Eth returned from uniswap - Added
+  console.log('ethAmount', ethAmount);
 
-  const kyberResult = await kyberRateContract.methods.getExpectedRate(ETH_ADDRESS, tokenAddress, ethAmount, true).call()
-  const kyberRate = web3.utils.fromWei(kyberResult.slippageRate.toString())
-  const outputAmount = (ethAmount * kyberRate).toString()
+  // let kyberResult = await kyberRateContract.methods.getExpectedRate(inputTokenAddress, outputTokenAddress, inputAmount, true).call()
+  const kyberResult = await kyberRateContract.methods.getExpectedRate(ETH_ADDRESS, tokenAddress, ethAmount, true).call() // variables were changed exept for true -> this puts the token on Kyber 
+ const kyberRate = web3.utils.fromWei(kyberResult.slippageRate.toString()); //Added
+ console.log('KyberRate', kyberRate);
+ const outputAmount = (ethAmount * kyberRate).toString();  //Added
+ console.log('OutputAmount', outputAmount);
+
+
+
+ loadTokenInformation(tokenSymbol, inputAmount, outputAmount);
+
+  // console.table([{
+  //   'Input Token': inputTokenSymbol,
+  //   'Output Token': outputTokenSymbol,
+  //   'Input Amount': web3.utils.fromWei(inputAmount, 'Ether'),
+  //   'Uniswap Return': web3.utils.fromWei(uniswapResult, 'Ether'),
+  //   'Kyber Expected Rate': web3.utils.fromWei(kyberResult.expectedRate, 'Ether'),
+  //   'Kyber Min Return': web3.utils.fromWei(kyberResult.slippageRate, 'Ether'),
+  //   'Timestamp': moment().tz('America/Chicago').format(),
+  // }])
 
   console.table([{
-    'Arb Order:': `${tokenSymbol} => ETH => ${tokenSymbol}`,
-    'Exchange Order:': 'Uniswap => Kyber',
+    'Arb Order': `${tokenSymbol} => ETH => ${tokenSymbol}`,
+    'Exchange Order': 'Uniswap => Kyber',
     'Input Amount': web3.utils.fromWei(inputAmount, 'Ether'),
     'Output Amount': web3.utils.fromWei(outputAmount, 'Ether'),
     'Timestamp': moment().tz('America/Chicago').format(),
   }])
+
+  
 }
 
 let priceMonitor
@@ -67,12 +103,54 @@ async function monitorPrice() {
   monitoringPrice = true
 
   try {
-
+    // Eth => DAI
     await checkUniswapToKyber({
-      tokenSymbol: 'DAI',
-      tokenAddress: '0x6b175474e89094c44da98b954eedeac495271d0f',
-      inputAmount: web3.utils.toWei('1', 'ETHER') // 1 Dai
+      tokenSymbol: 'MKR', // Was DAi
+      tokenAddress: '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2', // Wai Dai Token Address
+      inputAmount: web3.utils.toWei('1') // in wei
     })
+
+    // await checkUniswapToKyber({
+    //   tokenSymbol: 'Dai',
+    //   tokenAddress: '0x514910771AF9Ca656af840dff83E8264EcF986CA', // Link
+    //   inputAmount: web3.utils.toWei('1') // in wei
+    // })
+    // Eth => MKR
+    //// Before change
+    // await checkPair({
+    //   inputTokenSymbol: 'ETH',
+    //   inputTokenAddress: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+    //   outputTokenSymbol: 'MKR',
+    //   outputTokenAddress: '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2',
+    //   inputAmount: web3.utils.toWei('1', 'ETHER')
+    // })
+
+    // Eth to Dai
+    // await checkPair({
+    //   inputTokenSymbol: 'ETH',
+    //   inputTokenAddress: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+    //   outputTokenSymbol: 'DAI',
+    //   outputTokenAddress: '0x6b175474e89094c44da98b954eedeac495271d0f',
+    //   inputAmount: web3.utils.toWei('1', 'ETHER')
+    // })
+
+    // Eth to KNC
+    // await checkPair({
+    //   inputTokenSymbol: 'ETH',
+    //   inputTokenAddress: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+    //   outputTokenSymbol: 'KNC',
+    //   outputTokenAddress: '0xdd974d5c2e2928dea5f71b9825b8b646686bd200',
+    //   inputAmount: web3.utils.toWei('1', 'ETHER')
+    // })
+
+    // Eth => Link
+    // await checkPair({
+    //   inputTokenSymbol: 'ETH',
+    //   inputTokenAddress: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+    //   outputTokenSymbol: 'LINK',
+    //   outputTokenAddress: '0x514910771af9ca656af840dff83e8264ecf986ca',
+    //   inputAmount: web3.utils.toWei('1', 'ETHER')
+    // })
 
   } catch (error) {
     console.error(error)
@@ -85,5 +163,14 @@ async function monitorPrice() {
 }
 
 // Check markets every n seconds
-const POLLING_INTERVAL = process.env.POLLING_INTERVAL || 3000 // 3 Seconds
+const POLLING_INTERVAL = process.env.POLLING_INTERVAL || 5000 // 5 Seconds
 priceMonitor = setInterval(async () => { await monitorPrice() }, POLLING_INTERVAL)
+
+
+// Reason arbitrage is not profitable because it is not enough out of sync that jusitifies the price. This usually works best when there is major violatility in the token price. 
+
+function loadTokenInformation(tokenSymbol, inputAmount, outputAmount){
+  window.document.getElementById('token-symbol').innerHTML = tokenSymbol;
+  window.document.getElementById('input-amount').innerHTML = inputAmount;
+  window.document.getElementById('output-amount').innerHTML = outputAmount;
+}; 

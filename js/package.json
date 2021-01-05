@@ -1,7 +1,7 @@
 {
-  "name": "trading-bot",
+  "name": "arb-bot",
   "version": "0.3.0",
-  "description": "Steal My Cryptocurrency Trading Bot!",
+  "description": "Kevin's Arb Bot",
   "engines": {
     "node": "10.x"
   },
