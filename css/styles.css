@@ -147,7 +147,7 @@ nav {
 }
 
 .landing__text-container {
-  height: 44vh;
+  height: 34vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -174,7 +174,7 @@ nav {
 
 .landing__highlight {
   width: 100%;
-  height: 40vh;
+  height: 50vh;
   background: #1c3144;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -307,5 +307,86 @@ nav {
   width: 80%;
   height: 90%;
   background: lightgreen;
+}
+
+footer {
+  width: 100%;
+  height: 40vh;
+  background: black;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer .footer__grid {
+  padding-top: 30px;
+  height: 100%;
+  width: 70%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 90%;
+      grid-template-rows: 90%;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  color: red;
+}
+
+footer .footer-text-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  width: 70%;
+}
+
+footer .footer-text-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  background: lightgreen;
+  width: 100%;
+}
+
+footer .grid-header {
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+footer .grid-text p {
+  margin-bottom: 8px;
+}
+
+footer .grid-3-text {
+  background: lightgreen;
+  width: 100%;
+  text-align: center;
+}
+
+footer .grid-4-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 /*# sourceMappingURL=styles.css.map */
