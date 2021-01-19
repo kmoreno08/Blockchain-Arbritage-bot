@@ -312,7 +312,6 @@ nav {
 footer {
   width: 100%;
   height: 30vh;
-  background: black;
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -370,7 +369,69 @@ footer .footer-grid-header {
 }
 
 footer .footer-grid-text p {
-  margin-bottom: 15px;
+  padding-bottom: 6px;
+}
+
+footer .footer-grid-text ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  list-style-type: none;
+}
+
+footer .footer-grid-text ul li {
+  padding-bottom: 3px;
+}
+
+footer .footer-grid-text ul li a {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: green;
+  padding-bottom: 4px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+footer ul li a:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 3px;
+  top: 100%;
+  left: 0;
+  background: black;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+}
+
+footer ul li a:hover {
+  color: blue;
+}
+
+footer ul li a:hover::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+footer .footer-contact .contact {
+  width: 78px;
+  padding-bottom: 7px;
 }
 
 footer .grid-3-text {

@@ -267,7 +267,7 @@ nav {
 footer {
   width: 100%;
   height: 30vh;
-  background: black;
+  // background: black;
   color: white;
   display: flex;
   justify-content: center;
@@ -307,10 +307,67 @@ footer {
   }
 
   .footer-grid-text {
+    // Grid 1 - Info
     p {
-      margin-bottom: 15px;
+      padding-bottom: 6px;
+    }
+    // Grid 2 - Explore
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      list-style-type: none;
+
+      li {
+        padding-bottom: 3px;
+
+        a {
+          position: relative;
+          display: block;
+          text-decoration: none;
+          color: green;
+          // padding: 4px 0;
+          padding-bottom: 4px;
+          transition: 0.5s; //0.5s
+        }
+      }
     }
   }
+
+  //Grid 2 - Underline
+  ul li a:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 3px;
+    top: 100%;
+    left: 0;
+    background: black;
+    transition: transform 0.5s;
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+
+  ul li a:hover {
+    color: blue;
+  }
+
+  ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  // Grid 2 - Explore
+  // Hover Underline - https://webdevtrick.com/css-menu-hover-underline/
+  // Grid 3 - contact
+  .footer-contact {
+    .contact {
+      width: 78px;
+      padding-bottom: 7px;
+    }
+  }
+
+  /// This is for the contact pop out form - https://webdevtrick.com/popup-contact-form/
 
   .grid-3-text {
     // background: lightgreen;

@@ -8,14 +8,22 @@ const moment = require('moment-timezone')
 const numeral = require('numeral')
 const _ = require('lodash')
 const axios = require('axios')
+const fs = require('fs'); // Added 
 
 // SERVER CONFIG
 const PORT = process.env.PORT || 5000
 const app = express();
-const server = http.createServer(app).listen(PORT, () => console.log(`Listening on ${ PORT }`))
+// const server = http.createServer(app).listen(PORT, () => console.log(`Listening on ${ PORT }`)) ----- Original Connection
+
+// const server = http.createServer((req, res) => {
+//   res.writeHead(200, {'content-type': 'text/html'})
+//   fs.createReadStream('../index.html').pipe(res)
+// });
+
 
 // WEB3 CONFIG
 const web3 = new Web3(process.env.RPC_URL)
+
 
 // Uniswap Factory Contract: https://etherscan.io/address/0xc0a47dfe034b400b47bdad5fecda2621de6c4d95#code
 const UNISWAP_FACTORY_ABI = [{"name":"NewExchange","inputs":[{"type":"address","name":"token","indexed":true},{"type":"address","name":"exchange","indexed":true}],"anonymous":false,"type":"event"},{"name":"initializeFactory","outputs":[],"inputs":[{"type":"address","name":"template"}],"constant":false,"payable":false,"type":"function","gas":35725},{"name":"createExchange","outputs":[{"type":"address","name":"out"}],"inputs":[{"type":"address","name":"token"}],"constant":false,"payable":false,"type":"function","gas":187911},{"name":"getExchange","outputs":[{"type":"address","name":"out"}],"inputs":[{"type":"address","name":"token"}],"constant":true,"payable":false,"type":"function","gas":715},{"name":"getToken","outputs":[{"type":"address","name":"out"}],"inputs":[{"type":"address","name":"exchange"}],"constant":true,"payable":false,"type":"function","gas":745},{"name":"getTokenWithId","outputs":[{"type":"address","name":"out"}],"inputs":[{"type":"uint256","name":"token_id"}],"constant":true,"payable":false,"type":"function","gas":736},{"name":"exchangeTemplate","outputs":[{"type":"address","name":"out"}],"inputs":[],"constant":true,"payable":false,"type":"function","gas":633},{"name":"tokenCount","outputs":[{"type":"uint256","name":"out"}],"inputs":[],"constant":true,"payable":false,"type":"function","gas":663}]
@@ -33,12 +41,19 @@ const kyberRateContract = new web3.eth.Contract(KYBER_RATE_ABI, KYBER_RATE_ADDRE
 // async function checkPair(args) {
 //   const { inputTokenSymbol, inputTokenAddress, outputTokenSymbol, outputTokenAddress, inputAmount } = args
 
+
+
+
 /////////////////////////////////////////// 
 const ETH_ADDRESS = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee' // Added
 
-const button = document.getElementById('button');
-button.addEventListener('click', checkUniswapToKyber, false)
-console.log('Have entered here')
+// const button = document.getElementById('button');
+// // button.addEventListener('click', checkUniswapToKyber, false)
+// button.addEventListener('click', test);
+// function test() {
+//   document.getElementById('token-symbol').innerHTML = "It works!"
+// }
+
 
 async function checkUniswapToKyber(args) {  // Changed from above
   const { tokenSymbol, tokenAddress, inputAmount } = args // Changed from above
@@ -68,7 +83,7 @@ async function checkUniswapToKyber(args) {  // Changed from above
 
 
 
- loadTokenInformation(tokenSymbol, inputAmount, outputAmount);
+//  loadTokenInformation(tokenSymbol, inputAmount, outputAmount);
 
   // console.table([{
   //   'Input Token': inputTokenSymbol,
@@ -169,8 +184,8 @@ priceMonitor = setInterval(async () => { await monitorPrice() }, POLLING_INTERVA
 
 // Reason arbitrage is not profitable because it is not enough out of sync that jusitifies the price. This usually works best when there is major violatility in the token price. 
 
-function loadTokenInformation(tokenSymbol, inputAmount, outputAmount){
-  window.document.getElementById('token-symbol').innerHTML = tokenSymbol;
-  window.document.getElementById('input-amount').innerHTML = inputAmount;
-  window.document.getElementById('output-amount').innerHTML = outputAmount;
-}; 
+// function loadTokenInformation(tokenSymbol, inputAmount, outputAmount){
+//   window.document.getElementById('token-symbol').innerHTML = tokenSymbol;
+//   window.document.getElementById('input-amount').innerHTML = inputAmount;
+//   window.document.getElementById('output-amount').innerHTML = outputAmount;
+// }; 

@@ -9,12 +9,12 @@
 <body>
 
 
-  <div class="page">
+  <div id="top-of-page" class="page">
     <nav class="page__menu menu">
       <ul class="menu__list r-list">
-        <li class="menu__group"><a href="#0" class="menu__link r-link text-underlined">Info</a></li>
-        <li class="menu__group"><a href="#0" class="menu__link r-link text-underlined">Arbitrage</a></li>
-        <li class="menu__group"><a href="#0" class="menu__link r-link text-underlined">History</a></li>
+        <!-- <li class="menu__group"><a href="#0" class="menu__link r-link text-underlined">Info</a></li> -->
+        <li class="menu__group"><a href="#arb-bot" class="menu__link r-link text-underlined">Arbitrage</a></li>
+        <li class="menu__group"><a href="#history" class="menu__link r-link text-underlined">History</a></li>
       </ul>
     </nav>
   </div>
@@ -66,8 +66,8 @@
     <div class="arb-bot__container">
 
     </div>
-
   </div>
+
   <div id="history">
     <div class="headline">
       Log of positive trades
@@ -96,15 +96,49 @@
             <h4>Explore</h4>
           </div>
           <div class="footer-grid-text">
-            <p>Information</p>
-            <p>Arbitrage Bot</p>
-            <p>History</p>
+            <ul>
+              <li>
+                <a href='#top-of-page'> Back to Top</a>
+              </li>
+              <li>
+                <a href='#arb-bot'> Arbitrage Bot</a>
+              </li>
+              <li>
+                <a href='#history'> History</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
       <div class="footer-grid footer-text-container">
         <div class="footer-grid-header">
-          <h4>Contact Us</h4>
+          <h4 class="footer-contact">
+            <!-- <button type="button" class="btn" id="c-btn">
+              Contact Us 
+            </button> -->
+
+            
+            <!-- <div id="contact"> -->
+              <!-- <form action="#">
+                <ul>
+                  <h1>Contact</h1>
+                  <li>
+                    <input type="text" name="name" id="name" placeholder="&#xf2c0; Full name">
+                    <input type="email" name="email" id="email" placeholder="&#xf003; Email">
+                  </li>
+                  <li>
+                    <textarea name="message" id="message" placeholder="&#xf040; Your message"></textarea>
+                  </li>
+                  <li>
+                    <input type="submit" value="Send message" class="btn" id="submit">
+                  </li>
+                </ul>
+              </form>
+            </div> -->
+            <!-- <div class="contact text-underlined">
+              Contact Us
+            </div> -->
+          </h4>
         </div>
       </div>
       <div class="footer-grid footer-text-container">
@@ -128,8 +162,8 @@
 
   <button type="button" id="button">Click me!</button>
   <h2 id="token-symbol"></h2>
-  <h2 id="input-amount"></h2>
-  <h2 id="output-amount"></h2>
+  <h2 id="input-amount">input</h2>
+  <h2 id="output-amount">output</h2>
   <br>
   <!-- Forms-->
   <form action="index.js" method="GET">
