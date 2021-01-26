@@ -1,6 +1,6 @@
 console.log('Yes this is connected')
 
-var opener = document.getElementById("opener");
+let opener = document.getElementById("opener");
 
 opener.onclick = function() {
 

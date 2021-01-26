@@ -400,7 +400,7 @@ footer .footer-grid-text ul li a {
   transition: 0.5s;
 }
 
-footer ul li a:after {
+footer .underline:after {
   position: absolute;
   content: "";
   width: 100%;
@@ -418,15 +418,19 @@ footer ul li a:after {
           transform-origin: right;
 }
 
-footer ul li a:hover {
+footer .underline:hover {
   color: blue;
 }
 
-footer ul li a:hover::after {
+footer .underline:hover::after {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   -webkit-transform-origin: left;
           transform-origin: left;
+}
+
+footer .underline:after {
+  background: red;
 }
 
 footer .footer-contact .contact {
