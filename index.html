@@ -4,10 +4,15 @@
   <meta charset="utf-8">
   <title>Arb Finder</title>
   <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,800" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/eb64753d4d.js" crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 </head>
 <body>
 
+   <!-- Dimmer for contact form  -->
+   <div id="dimmer"></div> 
 
   <div id="top-of-page" class="page">
     <nav class="page__menu menu">
@@ -18,7 +23,7 @@
       </ul>
     </nav>
   </div>
-
+ 
 
   <div class="landing__text-container">
     <div class="landing__text-wrap">
@@ -67,7 +72,7 @@
 
     </div>
   </div>
-
+ 
   <div id="history">
     <div class="headline">
       Log of positive trades
@@ -75,6 +80,7 @@
     <div class="history__container"></div>
 
   </div>
+  <!-- <div id="dimmer">DIMMER HERE</div> -->
 
   <footer>
     <div class="footer__grid">
@@ -116,10 +122,62 @@
             <!-- <button type="button" class="btn" id="c-btn">
               Contact Us 
             </button> -->
-
             
-            <!-- <div id="contact"> -->
-              <!-- <form action="#">
+            <div id="lightbox">
+              <fieldset>
+                <div id="page-wrap">
+                  <div id="exit">
+                    <span id="x">X</span>
+                </div>
+                <div class="text-wrapper">
+                  <h2>Get in touch</h2>
+                </div>
+                  <div id="formLeft">
+                    <label for="Name">Name:</label>
+                    <div class="input-bg">
+                      <input type="text" id="Name" name="Name" class="required" minlength="2" />
+                    </div>
+                    
+                    <label for="Email">Email:</label>
+                    <div class="input-bg">
+                      <input type="text" id="Email" name="Email" class="required email" />
+                    </div>
+                  </div>
+                  
+                  <div id="formRight">
+                    <label for="Message">Message:</label></td>
+                    <div class="message-bg">
+                      <textarea name="Message" id="Message" rows="20" cols="20" class="required"></textarea>
+                    </div>
+                    
+                        <!-- Submit button -->
+                      <div class="main">
+                        <button class="button">Send</button>
+                        
+                        
+                        <div class="loader">
+                          <div class="check">
+                            <span class="check-one"></span>
+                            <span class="check-two"></span>
+                          </div>
+                        </div>
+                        
+                      </div>
+
+
+                   
+              
+                  <!-- <div class="clear"></div> -->
+                </div>
+              
+                </fieldset>
+            </div>
+            <a href="#" id="opener">Contact Us</a>
+
+            <!-- // Contact Form // -->
+        
+            <!-- <div id="contact">
+              <form action="#">
                 <ul>
                   <h1>Contact</h1>
                   <li>
@@ -137,7 +195,7 @@
             </div> -->
             <!-- <div class="contact text-underlined">
               Contact Us
-            </div> -->
+            </div>  -->
           </h4>
         </div>
       </div>
@@ -180,7 +238,7 @@
       <label for="">Output Amount</label>
     </div>
   </form>
-
+  <script type="text/javascript" src="js/contactForm.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

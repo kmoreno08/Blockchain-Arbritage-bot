@@ -439,6 +439,268 @@ footer .grid-3-text {
   text-align: center;
 }
 
+footer #exit {
+  color: #fff;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  width: 30px;
+  height: 30px;
+  border-radius: 1px;
+  float: right;
+  border: 1px solid white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+footer #lightbox {
+  visibility: hidden;
+  position: fixed;
+  background: red;
+  border: 2px solid #3c3c3c;
+  color: white;
+  z-index: 200;
+  width: 500px;
+  height: 75%;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+footer #lightbox fieldset {
+  border: none;
+}
+
+footer #lightbox #page-wrap {
+  width: 400px;
+  margin: 0 auto;
+  height: 98%;
+}
+
+footer #lightbox h2 {
+  text-align: left;
+  margin-left: 10px;
+}
+
+footer #lightbox #formLeft {
+  width: 320px;
+  float: left;
+}
+
+footer #lightbox #formLeft input {
+  width: 350px;
+  text-align: left;
+  background: none;
+  margin: 4px 0 0 8px;
+  font-size: 1.4em;
+}
+
+footer #lightbox #formRight {
+  width: 360px;
+  float: left;
+  padding-right: 44px;
+}
+
+footer #lightbox #formRight textarea {
+  width: 350px;
+  height: 109px;
+  display: block;
+  background: none;
+  margin: 4px 0 0 10px;
+  padding: 5px 0 5px 0;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.3em;
+}
+
+footer #lightbox #formRight .message-bg {
+  height: 100px;
+}
+
+footer #lightbox label {
+  display: block;
+  font-size: 1.3em;
+  text-indent: 10px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+footer #lightbox label .error {
+  position: absolute;
+  top: -16px;
+  right: 49px;
+  padding: 3px;
+  color: #da3939;
+  font-size: 1em;
+  text-align: right;
+  font-style: italic;
+  font-weight: normal;
+}
+
+footer #lightbox .main {
+  width: 350px;
+  height: 20vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 20px 0 0 10px;
+}
+
+footer #lightbox .button {
+  position: relative;
+  display: block;
+  width: 200px;
+  height: 36px;
+  border-radius: 18px;
+  background-color: #1c89ff;
+  border: solid 1px transparent;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+footer #lightbox .button:hover {
+  background-color: transparent;
+  border-color: #fff;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+footer #lightbox .loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  margin: 5px auto 0 auto;
+  border: solid 2px #424242;
+  border-top: solid 2px #1c89ff;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+footer #lightbox .check {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: translate3d(-4px, 50px, 0);
+          transform: translate3d(-4px, 50px, 0);
+  opacity: 0;
+}
+
+footer #lightbox .check span:nth-child(1) {
+  display: block;
+  width: 10px;
+  height: 2px;
+  background-color: #fff;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+footer #lightbox .check span:nth-child(2) {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+  -webkit-transform: rotate(-45deg) translate3d(14px, -4px, 0);
+          transform: rotate(-45deg) translate3d(14px, -4px, 0);
+  -webkit-transform-origin: 100%;
+          transform-origin: 100%;
+}
+
+footer #lightbox .loader.active {
+  -webkit-animation: loading 2s ease-in-out;
+          animation: loading 2s ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+footer #lightbox .check.active {
+  opacity: 1;
+  -webkit-transform: translate3d(-4px, 4px, 0);
+          transform: translate3d(-4px, 4px, 0);
+  -webkit-transition: all 0.5s cubic-bezier(0.49, 1.74, 0.38, 1.74);
+  transition: all 0.5s cubic-bezier(0.49, 1.74, 0.38, 1.74);
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+
+@-webkit-keyframes loading {
+  30% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+    -webkit-transform: rotate(1080deg);
+            transform: rotate(1080deg);
+    border-color: #262626;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: rotate(1080deg);
+            transform: rotate(1080deg);
+    border-color: #1c89ff;
+  }
+}
+
+@keyframes loading {
+  30% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+    -webkit-transform: rotate(1080deg);
+            transform: rotate(1080deg);
+    border-color: #262626;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: rotate(1080deg);
+            transform: rotate(1080deg);
+    border-color: #1c89ff;
+  }
+}
+
 footer .grid-4-container {
   width: 100%;
   display: -webkit-box;

@@ -10,6 +10,9 @@ $--secondary-bg-color: #95bf8f;
 $--primary-color: #1c3144;
 $--secondary-color: #9e2b25;
 $--text-color: #0e9ddb;
+$--dazn-main: #0c161c;
+$--dazn-secondary: rgb(12, 22, 28);
+$--dazn-light: #e8e9e9;
 
 body {
   width: 100%;
@@ -375,19 +378,210 @@ footer {
     text-align: center;
   }
 
+  // Grid 3 - Contact Form
+  // Exit button
+  #exit {
+    color: #fff;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    // text-align: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 1px;
+    float: right;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  #lightbox {
+    visibility: hidden;
+    position: fixed;
+    background: red;
+    border: 2px solid #3c3c3c;
+    color: white;
+    z-index: 200;
+    width: 500px;
+    height: 75%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+
+    fieldset {
+      border: none;
+    }
+
+    #page-wrap {
+      width: 400px;
+      margin: 0 auto;
+      height: 98%;
+    }
+
+    h2 {
+      text-align: left;
+      margin-left: 10px;
+    }
+
+    #formLeft {
+      width: 320px;
+      float: left;
+
+      input {
+        width: 350px;
+        text-align: left;
+        background: none;
+        margin: 4px 0 0 8px;
+        font-size: 1.4em;
+      }
+    }
+
+    #formRight {
+      width: 360px;
+      float: left;
+      padding-right: 44px;
+
+      textarea {
+        width: 350px;
+        height: 109px;
+        display: block;
+        background: none;
+        margin: 4px 0 0 10px;
+        padding: 5px 0 5px 0;
+        font-family: Helvetica, sans-serif;
+        font-size: 1.3em;
+      }
+
+      .message-bg {
+        height: 100px;
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 1.3em;
+      text-indent: 10px;
+      font-weight: bold;
+      margin-top: 10px;
+
+      .error {
+        position: absolute;
+        top: -16px;
+        right: 49px;
+        padding: 3px;
+        color: #da3939;
+        font-size: 1em;
+        text-align: right;
+        font-style: italic;
+        font-weight: normal;
+      }
+    }
+
+    // Submit Button on contact form
+    .main {
+      width: 350px;
+      height: 20vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0 0 10px;
+    }
+
+    .button {
+      position: relative;
+      display: block;
+      width: 200px;
+      height: 36px;
+      border-radius: 18px;
+      background-color: #1c89ff;
+      border: solid 1px transparent;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: all 0.1s ease-in-out;
+      &:hover {
+        background-color: transparent;
+        border-color: #fff;
+        transition: all 0.1s ease-in-out;
+      }
+    }
+
+    .loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      background: transparent;
+      margin: 5px auto 0 auto;
+      border: solid 2px #424242;
+      border-top: solid 2px #1c89ff;
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    .check {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transform: translate3d(-4px, 50px, 0);
+      opacity: 0;
+      span:nth-child(1) {
+        display: block;
+        width: 10px;
+        height: 2px;
+        background-color: #fff;
+        transform: rotate(45deg);
+      }
+      span:nth-child(2) {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background-color: #fff;
+        transform: rotate(-45deg) translate3d(14px, -4px, 0);
+        transform-origin: 100%;
+      }
+    }
+
+    .loader.active {
+      animation: loading 2s ease-in-out;
+      animation-fill-mode: forwards;
+    }
+
+    .check.active {
+      opacity: 1;
+      transform: translate3d(-4px, 4px, 0);
+      transition: all 0.5s cubic-bezier(0.49, 1.74, 0.38, 1.74);
+      transition-delay: 0.2s;
+    }
+
+    @keyframes loading {
+      30% {
+        opacity: 1;
+      }
+
+      85% {
+        opacity: 1;
+        transform: rotate(1080deg);
+        border-color: #262626;
+      }
+      100% {
+        opacity: 1;
+        transform: rotate(1080deg);
+        border-color: #1c89ff;
+      }
+    }
+  }
+
   .grid-4-container {
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
-
-  // https://colibriwp.com/blog/website-footers/ ///////////////
-  // .grid-text {
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: flex-start;
-  //   align-items: flex-start;
-  //   width: 100%;
-  //   // background: lightcoral;
-  // }
 }
