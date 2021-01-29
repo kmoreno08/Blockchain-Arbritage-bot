@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express')
+const Logger = require('./logger');
 const bodyParser = require('body-parser')
 const http = require('http')
 const Web3 = require('web3')
@@ -9,16 +10,20 @@ const numeral = require('numeral')
 const _ = require('lodash')
 const axios = require('axios')
 const fs = require('fs'); // Added 
+// module.exports = nameOfModule(class, function, etc...) // Then const nameOfModule = require('path');
+
+///// For logger /////////////////////////////////
+// const Logger = require('./logger');
+// const logger = new Logger();
+// logger.on('message', data => console.log('Called Listener', data));
+// logger.log('hello world');
+///////////////////////////////////////////////
+
 
 // SERVER CONFIG
 const PORT = process.env.PORT || 5000
 const app = express();
-// const server = http.createServer(app).listen(PORT, () => console.log(`Listening on ${ PORT }`)) ----- Original Connection
 
-// const server = http.createServer((req, res) => {
-//   res.writeHead(200, {'content-type': 'text/html'})
-//   fs.createReadStream('../index.html').pipe(res)
-// });
 
 
 // WEB3 CONFIG
@@ -103,9 +108,38 @@ async function checkUniswapToKyber(args) {  // Changed from above
     'Timestamp': moment().tz('America/Chicago').format(),
   }])
 
+
   
+    /////////// History Logger /////////
+    const logger = new Logger();
+    logger.on('message', data => console.log('Called Listener', data));
+    logger.log(`${tokenSymbol}`, web3.utils.fromWei(inputAmount, 'Ether'),web3.utils.fromWei(outputAmount, 'Ether'));
 }
 
+//////// This is to connect to html doc and put info ////////
+// const server = http.createServer(app).listen(PORT, () => console.log(`Listening on ${ PORT }`)) ----- Original Connection
+
+// const server = http.createServer((req, res) => {
+//   res.writeHead(200, {'content-type': 'text/html'})
+//   fs.createReadStream('../index.html').pipe(res)
+// });
+
+// fs.readFile('index.html', (err, html) => { 
+//   if(err){
+//     throw err;
+//   }
+//   const server = http.createServer((req, res) => { 
+//     res.statusCode = 200;
+//     res.setHeader('Content-type', 'text/html');
+//     res.write(html);
+//     res.end
+//   });
+
+//   server.listen(port, hostname, () => { 
+//     console.log('Server started on port ' + port);
+//   })
+// })
+///////////////////////////////////////////////////////
 let priceMonitor
 let monitoringPrice = false
 
@@ -178,11 +212,32 @@ async function monitorPrice() {
 }
 
 // Check markets every n seconds
-const POLLING_INTERVAL = process.env.POLLING_INTERVAL || 5000 // 5 Seconds
+const POLLING_INTERVAL = process.env.POLLING_INTERVAL || 20000 // 5 Seconds
 priceMonitor = setInterval(async () => { await monitorPrice() }, POLLING_INTERVAL)
 
 
 // Reason arbitrage is not profitable because it is not enough out of sync that jusitifies the price. This usually works best when there is major violatility in the token price. 
+
+
+
+// /////////// History Logger /////////
+// const logger = new Logger();
+// logger.on('message', data => console.log('Called Listener', data));
+// logger.log(`${tokenSymbol}`);
+
+
+
+// console.table([{
+//   'Arb Order': `${tokenSymbol} => ETH => ${tokenSymbol}`,
+//   'Exchange Order': 'Uniswap => Kyber',
+//   'Input Amount': web3.utils.fromWei(inputAmount, 'Ether'),
+//   'Output Amount': web3.utils.fromWei(outputAmount, 'Ether'),
+//   'Timestamp': moment().tz('America/Chicago').format(),
+// }])
+// }
+
+
+/////////////////////////////////////////////////
 
 // function loadTokenInformation(tokenSymbol, inputAmount, outputAmount){
 //   window.document.getElementById('token-symbol').innerHTML = tokenSymbol;
